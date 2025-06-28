@@ -3,12 +3,12 @@ using TMPro;
 
 public class InputHandler : MonoBehaviour
 {
-    public TMP_InputField inputField;
-    public string playerName;
+    [SerializeField] TMP_InputField XInputField;
+    [SerializeField] TMP_InputField YInputField;
+    [SerializeField] TMP_InputField ComponentInputField;
 
     public void OnSubmit()
     {
-        playerName = inputField.text;
-        Debug.Log("Player name is: " + playerName);
+        //playerName = inputField.text;
     }
 }
