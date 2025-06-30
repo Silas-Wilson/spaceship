@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 public class ShipBuildData : MonoBehaviour
 {
     public static ShipBuildData Instance;
-
-    public Dictionary<Vector2Int, ShipComponent> ShipBlueprint = new Dictionary<Vector2Int, ShipComponent>();
+    public ComponentGrid Grid { get; private set; }
+    private ShipStats _activeShip;
     [SerializeField] ShipStats ShipPrefab;
     [SerializeField] ShipComponent CorePrefab;
     [SerializeField] ShipComponent GunPrefabFOR_DEBUG;
@@ -19,38 +20,74 @@ public class ShipBuildData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Grid = new ComponentGrid();
     }
     void Start()
     {
-        ShipBlueprint.Add(new Vector2Int(0, 0), CorePrefab);
+        Grid.AddComponent(CorePrefab, Vector2Int.zero);
 
-        //For Debug Purposes:
-        ShipBlueprint.Add(new Vector2Int(0, 1), GunPrefabFOR_DEBUG);
-        ShipBlueprint.Add(new Vector2Int(0, -1), GunPrefabFOR_DEBUG);
+        //FOR TESTING PURPOSES:
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(0, 1));
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(0, -1));
+
+        BuildShip(Vector2.zero);
+
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(1, 0));
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(-1, 0));
+
+        BuildShip(Vector2.zero);
+
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(2, 0));
+        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(-2, 0));
 
         BuildShip(Vector2.zero);
     }
-
-    public void AddShipComponent(Vector2Int location, ShipComponent type)
-    {
-        if (ShipBlueprint[location] == null)
-        {
-            ShipBlueprint.Add(location, type);
-        }
-        else
-        {
-            Debug.Log("ERROR: There's already a component here!");
-        }
-    }
-
     public void BuildShip(Vector2 location)
     {
-        ShipStats activeShip = Instantiate(ShipPrefab, location, Quaternion.identity);
-
-        foreach (var pair in ShipBlueprint)
+        if (_activeShip == null)
         {
-            ShipComponent comp = Instantiate(pair.Value, activeShip.transform);
-            comp.transform.localPosition = new Vector3(pair.Key.x, pair.Key.y, 0);
+            _activeShip = Instantiate(ShipPrefab, location, Quaternion.identity);
         }
+        _activeShip.UpdateShipStats();
+        BuildShipComponents();
+    }
+    private void BuildShipComponents()
+    {
+        //Destroy all current components before adding components
+        foreach (Transform child in _activeShip.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (var pair in Grid.GetAllValues())
+        {
+            Vector2Int localPosition = pair.Key;
+            ShipComponent component = pair.Value;
+
+            ShipComponent componentAdded = Instantiate(component, _activeShip.transform);
+            componentAdded.transform.localPosition = new Vector3Int(localPosition.x, localPosition.y, 0);
+        }
+    }
+}
+
+public class ComponentGrid
+{
+    private Dictionary<Vector2Int, ShipComponent> _grid = new();
+    public bool AddComponent(ShipComponent component, Vector2Int location)
+    {
+        if (_grid.ContainsKey(location))
+        {
+            Debug.LogWarning($"Cannot add: Location {location} already occupied.");
+            return false;
+        }
+        _grid[location] = component;
+        return true;
+    }
+    public IEnumerable<KeyValuePair<Vector2Int, ShipComponent>> GetAllValues()
+    {
+        return _grid;
+    }
+    public ShipComponent[] GetAllComponents()
+    {
+        return _grid.Values.ToArray();
     }
 }

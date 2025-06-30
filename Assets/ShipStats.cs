@@ -6,7 +6,7 @@ public class ShipStats : MonoBehaviour
     [SerializeField] float _totalHP;
     [SerializeField] Vector2 _centerOfMass;
     [SerializeField] Rigidbody2D rb;
-    void Start()
+    public void UpdateShipStats()
     {
         _totalMass = FindTotalMass();
         rb.mass = _totalMass;
@@ -14,7 +14,7 @@ public class ShipStats : MonoBehaviour
     float FindTotalMass()
     {
         float mass = 0;
-        ShipComponent[] components = GetComponentsInChildren<ShipComponent>();
+        ShipComponent[] components = ShipBuildData.Instance.Grid.GetAllComponents();
 
         foreach (ShipComponent component in components)
         {
