@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ComponentInventory : MonoBehaviour
 {
-    [SerializeField] ShipComponent[] components;
+    [SerializeField] List<ShipComponent> components;
 }

@@ -1,7 +1,11 @@
 Just things I thought of that I want to make sure I don't forget.
 
-- make the mass of the rigidbody increase as more components are added to the ship
+URGENT:
+- Make it impossible to place components that are not attached to any part of the ship
+
+NOT URGENT:
 - make player movement less bad (Max linear and rotational speed, quicker acceleration, etc)
 - make a stats script on the player that calculates the mass, strength of linear and rotational
   acceleration, HP, stuff like that.
 - hitting enemys at high speeds has GOTTA hurt bruh
+- chance for an enemy to spawn that is the ship you built on the last playthrough
