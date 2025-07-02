@@ -26,20 +26,6 @@ public class ShipBuildData : MonoBehaviour
     {
         Grid.AddComponent(CorePrefab, Vector2Int.zero);
 
-        //FOR TESTING PURPOSES:
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(0, 1));
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(0, -1));
-
-        BuildShip(Vector2.zero);
-
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(1, 0));
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(-1, 0));
-
-        BuildShip(Vector2.zero);
-
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(2, 0));
-        Grid.AddComponent(GunPrefabFOR_DEBUG, new Vector2Int(-2, 0));
-
         BuildShip(Vector2.zero);
     }
     public void BuildShip(Vector2 location)

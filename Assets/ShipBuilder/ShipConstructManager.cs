@@ -9,6 +9,8 @@ public class ShipConstructManager : MonoBehaviour
     Camera mainCam;
     [SerializeField] Draggable DEBUG_COMPONENT;
 
+    [SerializeField] InventoryButton button;
+
     void Awake()
     {
         if (Instance == null)
@@ -29,8 +31,8 @@ public class ShipConstructManager : MonoBehaviour
         Vector3Int quantizedPosition = new Vector3Int((int)Math.Round(worldPos.x), (int)Math.Round(worldPos.y), 0);
         return quantizedPosition;
     }
-    public void CreateDraggableComponent()
+    public void CreateDraggableComponent(ShipComponent component)
     {
-        Instantiate(DEBUG_COMPONENT, GetQuantizedMousePosition(), Quaternion.identity);
+        Instantiate(component.GetDraggable(), GetQuantizedMousePosition(), Quaternion.identity);
     }
 }

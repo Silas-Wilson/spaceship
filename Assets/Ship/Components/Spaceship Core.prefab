@@ -149,4 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mass: 1
   _defense: 1
-  _location: {x: 0, y: 0}
+  _draggable: {fileID: 4866450496367256427, guid: c8a65b47cbbe0924b90776fd40030b36, type: 3}
