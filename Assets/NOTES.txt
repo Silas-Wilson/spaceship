@@ -2,6 +2,11 @@ Just things I thought of that I want to make sure I don't forget.
 
 URGENT:
 - Make it impossible to place components that are not attached to any part of the ship
+- Make this inventory system less shit
+    - Don't allow more than int INVENTORY_SPACE amount of components
+    - Take location functionality away from the button and give it to ComponentInventory
+    - Don't remove it from inventory until it is PLACED!
+    - Make a way to remove components from the ship and add them back to the inventory
 
 NOT URGENT:
 - make player movement less bad (Max linear and rotational speed, quicker acceleration, etc)

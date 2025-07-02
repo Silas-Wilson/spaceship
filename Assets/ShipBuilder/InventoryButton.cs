@@ -32,7 +32,6 @@ public class InventoryButton : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         ShipConstructManager.Instance.CreateDraggableComponent(_associatedComponent);
-        ComponentInventory.Instance.components.Remove(_associatedComponent);
         Destroy(gameObject);
     }
     void Start()
