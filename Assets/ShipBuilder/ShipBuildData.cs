@@ -28,7 +28,7 @@ public class ShipBuildData : MonoBehaviour
 
         BuildShip(Vector2.zero);
     }
-    public void BuildShip(Vector2 location)
+    public ShipStats BuildShip(Vector2 location)
     {
         if (_activeShip == null)
         {
@@ -36,6 +36,7 @@ public class ShipBuildData : MonoBehaviour
         }
         _activeShip.UpdateShipStats();
         BuildShipComponents();
+        return _activeShip;
     }
     private void BuildShipComponents()
     {

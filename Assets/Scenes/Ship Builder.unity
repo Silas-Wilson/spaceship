@@ -594,14 +594,6 @@ MonoBehaviour:
   <components>k__BackingField:
   - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
   - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
-  - {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
 --- !u!1 &1377411247
 GameObject:
   m_ObjectHideFlags: 0
