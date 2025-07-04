@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class PTurret : MonoBehaviour
 {
     [SerializeField] GameObject projectile;
+    [SerializeField] Vector3 _projectileSpawnPos;
     void OnEnable()
     {
         PlayerInput.Input.OnAct1Pressed += FireProjectile;
@@ -14,6 +13,13 @@ public class PTurret : MonoBehaviour
     }
     void FireProjectile()
     {
-        Instantiate(projectile, transform.position, transform.rotation);
+        Vector3 spawnPos = transform.position + transform.TransformDirection(_projectileSpawnPos);
+        Instantiate(projectile, spawnPos, transform.rotation);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position + _projectileSpawnPos, Vector3.one * 0.05f);
     }
 }
