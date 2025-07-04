@@ -49,8 +49,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -154,8 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8af371c68e6bad488e9ccd6c0b5d1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationStrength: 5
+  _rotationStrength: 0.1
+  _maxRotationSpeed: 150
   _accelerationStrength: 3
+  _inertialFactor: 10
+  _maxSpeed: 7
 --- !u!114 &5469359077498148920
 MonoBehaviour:
   m_ObjectHideFlags: 0

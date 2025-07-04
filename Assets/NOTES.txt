@@ -1,6 +1,7 @@
 Just things I thought of that I want to make sure I don't forget.
 
 URGENT:
+- MAKE ROTATION STABLE. IT IS CURRENTLY NOT STABLE AT ALL
 - Make it impossible to place components that are not attached to any part of the ship
 - Make this inventory system less shit
     - Don't allow more than int INVENTORY_SPACE amount of components
@@ -9,7 +10,6 @@ URGENT:
     - Make a way to remove components from the ship and add them back to the inventory
 
 NOT URGENT:
-- make player movement less bad (Max linear and rotational speed, quicker acceleration, etc)
 - make a stats script on the player that calculates the mass, strength of linear and rotational
   acceleration, HP, stuff like that.
 - hitting enemys at high speeds has GOTTA hurt bruh

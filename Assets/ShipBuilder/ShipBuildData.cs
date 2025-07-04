@@ -5,6 +5,7 @@ public class ShipBuildData : MonoBehaviour
 {
     public static ShipBuildData Instance;
     public ComponentGrid Grid { get; private set; }
+    private ComponentGrid _defaultGrid;
     private ShipStats _activeShip;
     [SerializeField] ShipStats ShipPrefab;
     [SerializeField] ShipComponent CorePrefab;
