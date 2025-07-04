@@ -10,6 +10,7 @@ public class ShipStats : MonoBehaviour
     {
         _totalMass = FindTotalMass();
         rb.mass = _totalMass;
+        rb.inertia = _totalMass;
     }
     float FindTotalMass()
     {

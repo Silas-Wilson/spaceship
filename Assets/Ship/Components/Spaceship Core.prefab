@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 485024411589248024}
   - component: {fileID: 110275130732087219}
   - component: {fileID: 6825380101741242115}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spaceship Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
