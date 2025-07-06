@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using State = EnemyStates.State;
 public class Enemy1 : MonoBehaviour
 {
+    const float PI = Mathf.PI;
     [Header("Movement")]
     [SerializeField] float _maxSpeed;
     [SerializeField] float _maxFleeSpeed;
@@ -10,11 +12,23 @@ public class Enemy1 : MonoBehaviour
     [Header("Specific Movement")]
     [SerializeField] float _preferredDistanceFromPlayer;
     [SerializeField] float _unacceptableDistanceFromPlayer;
+    [Header("Attack")]
+    [SerializeField] float _bulletSpeed;
+    [SerializeField] float _bulletCooldownTime;
+    [SerializeField] float _burstCooldownTime;
+    [SerializeField] int _burstNumber;
+    bool canFire;
 
     [Header("Components")]
     [SerializeField] EnemyDetection detection;
     [SerializeField] EnemyStates sm;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] EnemyBullet bullet;
+
+    void Start()
+    {
+        canFire = true;
+    }
     void FixedUpdate()
     {
         State currentState = sm.GetState();
@@ -31,30 +45,99 @@ public class Enemy1 : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
-        if (currentState == State.active)
+        else if (currentState == State.active)
         {
+            #region Movement
+
             float playerDistance = (player.transform.position - transform.position).magnitude;
             Vector2 playerDirection = (player.transform.position - transform.position).normalized;
-            Vector2 perpindicularDirection = new Vector2(-1 * playerDirection.y, playerDirection.x);
-            float parallelVelocity = Vector2.Dot(playerDirection, rb.linearVelocity);
+
+            float targetSpeed = _maxSpeed;
+            Vector2 accelerationDirection = playerDirection;
 
             if (playerDistance > _preferredDistanceFromPlayer)
             {
-                rb.AddForce(playerDirection * _thrustForce * (_maxSpeed - rb.linearVelocity.magnitude));
+                //Do nothing
             }
             else if (playerDistance < _preferredDistanceFromPlayer && playerDistance > _unacceptableDistanceFromPlayer)
             {
-                rb.AddForce(perpindicularDirection * _thrustForce * (_maxSpeed - rb.linearVelocity.magnitude));
+                accelerationDirection = new Vector2(-1 * playerDirection.y, playerDirection.x);
             }
             else
             {
-                rb.AddForce(-1 * playerDirection * _thrustForce * (_maxFleeSpeed - rb.linearVelocity.magnitude));
+                accelerationDirection *= -1;
+                targetSpeed = _maxFleeSpeed;
             }
+            rb.AddForce(accelerationDirection * _thrustForce * (targetSpeed - rb.linearVelocity.magnitude));
+
+            #endregion
+
+            #region Attacks
+
+            Vector2 playerVelocity = player.GetComponentInParent<Rigidbody2D>().linearVelocity;
+
+            Vector2 playerParallelVelocity = Vector2.Dot(playerVelocity, playerDirection) * playerDirection;
+            Vector2 playerPerpendicularVelocity = playerVelocity - playerParallelVelocity;
+            float playerPerpendicularSpeed = playerPerpendicularVelocity.magnitude;
+
+            float cross = playerDirection.x * playerPerpendicularVelocity.y - playerDirection.y * playerPerpendicularVelocity.x;
+
+            float ratio = playerPerpendicularSpeed / _bulletSpeed;
+            ratio = Mathf.Clamp(ratio, -1f, 1f);
+
+            float fireAngle = Mathf.Asin(ratio);
+
+            if (canFire)
+            {
+                rb.linearVelocity = Vector2.zero;
+                EnemyBullet currentBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+                currentBullet.SetVelocity(_bulletSpeed, Rotate(playerDirection, Mathf.Sign(cross) * fireAngle));//Rotate(playerDirection, fireAngle));
+                StartCoroutine(BulletCooldown());
+            }
+
+            #endregion
         }
     }
 
     public void OnDestroy()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator BulletCooldown()
+    {
+        float timeLeft = _bulletCooldownTime;
+        canFire = false;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+
+        canFire = true;
+    }
+    IEnumerator BurstCooldown()
+    {
+        float timeLeft = _bulletCooldownTime;
+        canFire = false;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+
+        canFire = true;
+    }
+
+    Vector2 Rotate(Vector2 v, float radians)
+    {
+        float cos = Mathf.Cos(radians);
+        float sin = Mathf.Sin(radians);
+        return new Vector2(
+            v.x * cos - v.y * sin,
+            v.x * sin + v.y * cos
+        );
     }
 }

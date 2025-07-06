@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5884769004605219405}
   m_Layer: 3
   m_Name: Turret Segment
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

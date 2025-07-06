@@ -201,7 +201,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4643123452086566554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,9 +220,14 @@ MonoBehaviour:
   _thrustForce: 5
   _preferredDistanceFromPlayer: 8
   _unacceptableDistanceFromPlayer: 3
+  _bulletSpeed: 10
+  _bulletCooldownTime: 1
+  _burstCooldownTime: 0
+  _burstNumber: 0
   detection: {fileID: 2410615689460454771}
   sm: {fileID: 8945073871755076418}
   rb: {fileID: 5551543431362366454}
+  bullet: {fileID: 2385328698970018630, guid: a7799b87981698c4d92ba6c27c528ef0, type: 3}
 --- !u!61 &8946188992101838844
 BoxCollider2D:
   m_ObjectHideFlags: 0
