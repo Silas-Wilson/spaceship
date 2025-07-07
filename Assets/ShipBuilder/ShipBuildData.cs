@@ -25,7 +25,7 @@ public class ShipBuildData : MonoBehaviour
     }
     void Start()
     {
-        Grid.AddComponent(CorePrefab, Vector2Int.zero);
+        Grid.AddComponent(CorePrefab, Vector2Int.zero, Quaternion.identity);
 
         BuildShip(Vector2.zero);
     }
@@ -46,46 +46,38 @@ public class ShipBuildData : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (var pair in Grid.GetAllValues())
+        foreach (var compData in Grid.GetAllValues())
         {
-            Vector2Int localPosition = pair.Key;
-            ShipComponent component = pair.Value;
-
-            ShipComponent componentAdded = Instantiate(component, _activeShip.transform);
-            componentAdded.transform.localPosition = new Vector3Int(localPosition.x, localPosition.y, 0);
+            ShipComponent componentAdded = Instantiate(compData.component, _activeShip.transform);
+            componentAdded.transform.localPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
         }
     }
 }
 
 public class ComponentGrid
 {
-    private Dictionary<Vector2Int, ShipComponent> _grid = new();
-    public bool AddComponent(ShipComponent component, Vector2Int location)
+    private List<ShipComponentData> _grid = new();
+    public bool AddComponent(ShipComponent component, Vector2Int location, Quaternion rotation)
     {
-        /**
-        if (_grid.ContainsKey(location))
-        {
-            return false;
-        }
-        _grid[location] = component;
-        return true;
-        **/
-
-        // _grid.Count < 1 is here to allow the first component (The core) to be placed.
         if (IsInValidLocation(location))
         {
-            _grid[location] = component;
+            _grid.Add(new ShipComponentData(component, location, rotation));
             return true;
         }
         return false;
     }
-    public IEnumerable<KeyValuePair<Vector2Int, ShipComponent>> GetAllValues()
+    public List<ShipComponentData> GetAllValues()
     {
         return _grid;
     }
     public ShipComponent[] GetAllComponents()
     {
-        return _grid.Values.ToArray();
+        ShipComponent[] components = new ShipComponent[_grid.Count];
+        for (int i = 0; i < components.Length; i++)
+        {
+            components[i] = _grid[i].component;
+        }
+        return components;
     }
     private bool IsInValidLocation(Vector2Int location)
     {
@@ -94,15 +86,47 @@ public class ComponentGrid
         {
             return true;
         }
-        bool isComponentUp = _grid.ContainsKey(location + Vector2Int.up);
-        bool isComponentDown = _grid.ContainsKey(location + Vector2Int.down);
-        bool isComponentRight = _grid.ContainsKey(location + Vector2Int.right);
-        bool isComponentLeft = _grid.ContainsKey(location + Vector2Int.left);
-        if ((isComponentUp || isComponentDown || isComponentRight || isComponentLeft) && !_grid.ContainsKey(location))
+        foreach (ShipComponentData data in _grid)
         {
-            return true;
+            if (data.position == location)
+            {
+                Debug.LogWarning($"Location {location} already occupied!");
+                return false;
+            }
         }
-        Debug.LogWarning($"Location {location} is invalid!");
+        foreach (ShipComponentData data in _grid)
+        {
+            if (data.position == location + Vector2.up)
+            {
+                return true;
+            }
+            if (data.position == location + Vector2.down)
+            {
+                return true;
+            }
+            if (data.position == location + Vector2.right)
+            {
+                return true;
+            }
+            if (data.position == location + Vector2.left)
+            {
+                return true;
+            }
+        }
+        Debug.LogWarning($"Location {location} is not connected to this ship!");
         return false;
+    }
+}
+public class ShipComponentData
+{
+    public ShipComponent component { get; private set; }
+    public Vector2Int position { get; private set; }
+    public Quaternion rotation { get; private set; }
+
+    public ShipComponentData(ShipComponent c, Vector2Int p, Quaternion r)
+    {
+        component = c;
+        position = p;
+        rotation = r;
     }
 }

@@ -22,7 +22,8 @@ public class InventoryButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerUp(PointerEventData eventData)
     {
         Vector3Int mouseGridPosition = ShipConstructManager.Instance.GetQuantizedMousePosition();
-        if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition))
+        //CHANGE ROTATION INPUT FOR THIS
+        if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition, Quaternion.identity))
         {
             ShipBuildData.Instance.BuildShip(Vector2.zero);
             Destroy(gameObject);
