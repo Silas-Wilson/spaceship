@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class InventoryButton : MonoBehaviour, IPointerDownHandler
+public class InventoryButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] ShipComponent _associatedComponent;
     [SerializeField] Image buttonSprite;
@@ -11,28 +10,23 @@ public class InventoryButton : MonoBehaviour, IPointerDownHandler
     {
         _associatedComponent = component;
     }
-    public void SetPosition(int index)
+    public void SetPosition(Vector2 pos)
     {
-        float yPos;
-        float xPos;
-        if (index % 2 == 0)
-        {
-            xPos = 8;
-        }
-        else
-        {
-            xPos = 40;
-        }
-
-        yPos = ((index + 1 - index % 2) * -16) + 8;
-        
         RectTransform rectTransform = GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector2(xPos, yPos);
+        rectTransform.localPosition = pos;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         ShipConstructManager.Instance.CreateDraggableComponent(_associatedComponent);
-        Destroy(gameObject);
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Vector3Int mouseGridPosition = ShipConstructManager.Instance.GetQuantizedMousePosition();
+        if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition))
+        {
+            ShipBuildData.Instance.BuildShip(Vector2.zero);
+            Destroy(gameObject);
+        }
     }
     void Start()
     {

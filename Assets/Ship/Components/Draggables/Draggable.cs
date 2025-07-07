@@ -14,8 +14,6 @@ public class Draggable : MonoBehaviour
         transform.position = mouseGridPosition;
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition);
-            ShipBuildData.Instance.BuildShip(Vector2.zero);
             Destroy(gameObject);
         }
     }

@@ -31,7 +31,22 @@ public class ComponentInventory : MonoBehaviour
             ShipComponent component = components[i];
             InventoryButton button = Instantiate(_button, _inventoryUI.transform);
             button.SetComponent(component);
-            button.SetPosition(i);
+            button.SetPosition(CalculatePosition(i));
         }
+    }
+    private Vector2 CalculatePosition(int index)
+    {
+        float yPos;
+        float xPos;
+        if (index % 2 == 0)
+        {
+            xPos = 8;
+        }
+        else
+        {
+            xPos = 40;
+        }
+        yPos = ((index + 1 - index % 2) * -16) + 8;
+        return new Vector2(xPos, yPos);
     }
 }

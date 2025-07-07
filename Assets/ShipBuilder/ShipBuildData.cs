@@ -62,13 +62,22 @@ public class ComponentGrid
     private Dictionary<Vector2Int, ShipComponent> _grid = new();
     public bool AddComponent(ShipComponent component, Vector2Int location)
     {
+        /**
         if (_grid.ContainsKey(location))
         {
-            Debug.LogWarning($"Cannot add: Location {location} already occupied.");
             return false;
         }
         _grid[location] = component;
         return true;
+        **/
+
+        // _grid.Count < 1 is here to allow the first component (The core) to be placed.
+        if (IsInValidLocation(location))
+        {
+            _grid[location] = component;
+            return true;
+        }
+        return false;
     }
     public IEnumerable<KeyValuePair<Vector2Int, ShipComponent>> GetAllValues()
     {
@@ -77,5 +86,23 @@ public class ComponentGrid
     public ShipComponent[] GetAllComponents()
     {
         return _grid.Values.ToArray();
+    }
+    private bool IsInValidLocation(Vector2Int location)
+    {
+        // Allows the first component (The core) to be added no matter what.
+        if (_grid.Count < 1)
+        {
+            return true;
+        }
+        bool isComponentUp = _grid.ContainsKey(location + Vector2Int.up);
+        bool isComponentDown = _grid.ContainsKey(location + Vector2Int.down);
+        bool isComponentRight = _grid.ContainsKey(location + Vector2Int.right);
+        bool isComponentLeft = _grid.ContainsKey(location + Vector2Int.left);
+        if ((isComponentUp || isComponentDown || isComponentRight || isComponentLeft) && !_grid.ContainsKey(location))
+        {
+            return true;
+        }
+        Debug.LogWarning($"Location {location} is invalid!");
+        return false;
     }
 }
