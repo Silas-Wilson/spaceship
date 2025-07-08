@@ -49,6 +49,7 @@ public class ShipBuildData : MonoBehaviour
         foreach (var compData in Grid.GetAllValues())
         {
             ShipComponent componentAdded = Instantiate(compData.component, _activeShip.transform);
+            componentAdded.transform.rotation = compData.rotation;
             componentAdded.transform.localPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
         }
     }

@@ -74,6 +74,8 @@ public class Enemy1 : MonoBehaviour
 
             #region Attacks
 
+            #region TOO ACCURATE ATTACK!
+            /*
             Vector2 playerVelocity = player.GetComponentInParent<Rigidbody2D>().linearVelocity;
 
             Vector2 playerParallelVelocity = Vector2.Dot(playerVelocity, playerDirection) * playerDirection;
@@ -92,6 +94,16 @@ public class Enemy1 : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 EnemyBullet currentBullet = Instantiate(bullet, transform.position, Quaternion.identity);
                 currentBullet.SetVelocity(_bulletSpeed, Rotate(playerDirection, Mathf.Sign(cross) * fireAngle));//Rotate(playerDirection, fireAngle));
+                StartCoroutine(BulletCooldown());
+            }
+            */
+            #endregion
+    
+            if (canFire)
+            {
+                rb.linearVelocity = Vector2.zero;
+                EnemyBullet currentBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+                currentBullet.SetVelocity(_bulletSpeed, playerDirection);
                 StartCoroutine(BulletCooldown());
             }
 

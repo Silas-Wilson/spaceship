@@ -10,6 +10,7 @@ public class ShipConstructManager : MonoBehaviour
 
     [SerializeField] InventoryButton button;
     [SerializeField] Draggable draggablePrefab;
+    private Draggable _currentDraggable;
 
     void Awake()
     {
@@ -44,9 +45,10 @@ public class ShipConstructManager : MonoBehaviour
         Vector3Int quantizedPosition = new Vector3Int((int)Math.Round(worldPos.x), (int)Math.Round(worldPos.y), 0);
         return quantizedPosition;
     }
-    public void CreateDraggableComponent(ShipComponent component)
+    public Draggable CreateDraggableComponent(ShipComponent component)
     {
-        Draggable thisDraggable = Instantiate(draggablePrefab, GetQuantizedMousePosition(), Quaternion.identity);
-        thisDraggable.SetComponent(component);
+        Draggable _currentDraggable = Instantiate(draggablePrefab, GetQuantizedMousePosition(), Quaternion.identity);
+        _currentDraggable.SetComponent(component);
+        return _currentDraggable;
     }
 }

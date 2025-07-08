@@ -15,15 +15,17 @@ public class InventoryButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = pos;
     }
+
+    private Draggable currentDraggable;
     public void OnPointerDown(PointerEventData eventData)
     {
-        ShipConstructManager.Instance.CreateDraggableComponent(_associatedComponent);
+        currentDraggable = ShipConstructManager.Instance.CreateDraggableComponent(_associatedComponent);
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         Vector3Int mouseGridPosition = ShipConstructManager.Instance.GetQuantizedMousePosition();
         //CHANGE ROTATION INPUT FOR THIS
-        if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition, Quaternion.identity))
+        if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition, currentDraggable.transform.rotation))
         {
             ComponentInventory.Instance.RemoveFromInventory(_associatedComponent);
             ComponentInventory.Instance.LoadInventory();
