@@ -26,6 +26,10 @@ public class EnemyBullet : MonoBehaviour
 
         OnDestroy();
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 
     void OnDestroy()
     {

@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mass: 0.1
-  _defense: 1
-  _draggable: {fileID: 4864083412524333313, guid: 3723367917eabf441953b2e53f2ff84d, type: 3}
+  _defense: 10
+  _draggable: {fileID: 0}
 --- !u!114 &5884769004605219405
 MonoBehaviour:
   m_ObjectHideFlags: 0

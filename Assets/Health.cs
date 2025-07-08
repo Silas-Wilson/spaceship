@@ -26,8 +26,15 @@ public class Health : MonoBehaviour
         // Check if the object's layer is part of the LayerMask
         if (((1 << collision.gameObject.layer) & _damageLayers) != 0)
         {
+            float defense = 1f;
+            if (gameObject.CompareTag("player"))
+            {
+                defense = collision.otherCollider.GetComponent<ShipComponent>().GetDefense();
+            }
             //Probably will change later; calculating damage based on momentum
-            TakeDamage(collision.rigidbody.mass * collision.relativeVelocity.magnitude);
+            TakeDamage(collision.rigidbody.mass * collision.relativeVelocity.magnitude * (1 - (defense / 100)));
+            float damage = collision.rigidbody.mass * collision.relativeVelocity.magnitude * (1 - (defense / 100));
+            Debug.Log(gameObject.name + " took " + damage + " damage!");
         }
     }
 }

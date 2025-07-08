@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2884134119398896839}
   - component: {fileID: 5469359077498148920}
   - component: {fileID: 5529594991568832997}
+  - component: {fileID: -5819975604515542422}
   m_Layer: 3
   m_Name: SHIP
   m_TagString: player
@@ -142,6 +143,23 @@ MonoBehaviour:
       m_Action: Action 1
       m_Flags: 0
     m_Flags: 0
+  <Action2>k__BackingField:
+    m_Name: Action 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 316543d5-2df9-41ea-a237-92b3a3eb16a2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 39039d65-4274-459e-9ea1-c08ef93833b4
+      m_Path: <Keyboard>/k
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action 2
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &2884134119398896839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +206,23 @@ MonoBehaviour:
   _totalHP: 0
   _centerOfMass: {x: 0, y: 0}
   rb: {fileID: 896192707578806918}
+--- !u!114 &-5819975604515542422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215379536873563315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb1882b716a2884e8f2cbd7930d74dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  _maxHealth: 100
+  _currentHealth: 0
+  _onEntityDead:
+    m_PersistentCalls:
+      m_Calls: []

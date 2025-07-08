@@ -15,8 +15,8 @@ TagManager:
   - UI
   - ShipProjectile
   - Asteroid
-  - 
-  - 
+  - Enemy
+  - EnemyProjectile
   - 
   - 
   - 
