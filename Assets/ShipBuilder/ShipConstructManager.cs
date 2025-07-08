@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +9,7 @@ public class ShipConstructManager : MonoBehaviour
     [SerializeField] Draggable DEBUG_COMPONENT;
 
     [SerializeField] InventoryButton button;
+    [SerializeField] Draggable draggablePrefab;
 
     void Awake()
     {
@@ -46,6 +46,7 @@ public class ShipConstructManager : MonoBehaviour
     }
     public void CreateDraggableComponent(ShipComponent component)
     {
-        Instantiate(component.GetDraggable(), GetQuantizedMousePosition(), Quaternion.identity);
+        Draggable thisDraggable = Instantiate(draggablePrefab, GetQuantizedMousePosition(), Quaternion.identity);
+        thisDraggable.SetComponent(component);
     }
 }

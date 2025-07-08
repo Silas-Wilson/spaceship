@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Draggable : MonoBehaviour
 {
-    [SerializeField] ShipComponent _associatedComponent;
+    [SerializeField] SpriteRenderer sr;
+    //ShipComponent _associatedComponent;
     public void SetComponent(ShipComponent component)
     {
-        _associatedComponent = component;
+        //_associatedComponent = component;
+        sr.sprite = component.GetComponent<SpriteRenderer>().sprite;
     }
     void Update()
     {

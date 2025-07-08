@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEBUG_COMPONENT: {fileID: 4866450496367256427, guid: c8a65b47cbbe0924b90776fd40030b36, type: 3}
   button: {fileID: 0}
+  draggablePrefab: {fileID: 4866450496367256427, guid: c8a65b47cbbe0924b90776fd40030b36, type: 3}
 --- !u!4 &579941724
 Transform:
   m_ObjectHideFlags: 0
