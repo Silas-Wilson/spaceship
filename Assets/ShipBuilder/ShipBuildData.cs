@@ -66,6 +66,24 @@ public class ComponentGrid
         }
         return false;
     }
+    public ShipComponent RemoveComponent(Vector3Int loc)
+    {
+        Vector2Int loc2d = new Vector2Int(loc.x, loc.y);
+        if (loc2d == Vector2Int.zero)
+        {
+            Debug.LogWarning("You cannot remove the ship's core!");
+            return null;
+        }
+        foreach (ShipComponentData compData in _grid)
+            {
+                if (compData.position == loc2d)
+                {
+                    _grid.Remove(compData);
+                    return compData.component;
+                }
+            }
+        return null;
+    }
     public List<ShipComponentData> GetAllValues()
     {
         return _grid;

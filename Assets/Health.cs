@@ -23,7 +23,6 @@ public class Health : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("COLLISION!");
         // Check if the object's layer is part of the LayerMask
         if (((1 << collision.gameObject.layer) & _damageLayers) != 0)
         {

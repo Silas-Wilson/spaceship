@@ -24,6 +24,19 @@ public class ShipConstructManager : MonoBehaviour
 
         mainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
+    void Update()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            ShipComponent removedComponent = ShipBuildData.Instance.Grid.RemoveComponent(GetQuantizedMousePosition());
+            if (removedComponent != null)
+            {
+                ComponentInventory.Instance.AddToInventory(removedComponent);
+                ComponentInventory.Instance.LoadInventory();
+                ShipBuildData.Instance.BuildShip(Vector2.zero);
+            }
+        }
+    }
     public Vector3Int GetQuantizedMousePosition()
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 428154736631706415}
   m_Layer: 5
   m_Name: ComponentButton
-  m_TagString: Untagged
+  m_TagString: componentButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,4 +135,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _associatedComponent: {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
   buttonSprite: {fileID: 2254832459390040016}
-  rtrans: {fileID: 7764074383420350493}

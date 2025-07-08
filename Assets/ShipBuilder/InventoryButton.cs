@@ -25,6 +25,8 @@ public class InventoryButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         //CHANGE ROTATION INPUT FOR THIS
         if (ShipBuildData.Instance.Grid.AddComponent(_associatedComponent, (Vector2Int)mouseGridPosition, Quaternion.identity))
         {
+            ComponentInventory.Instance.RemoveFromInventory(_associatedComponent);
+            ComponentInventory.Instance.LoadInventory();
             ShipBuildData.Instance.BuildShip(Vector2.zero);
             Destroy(gameObject);
         }

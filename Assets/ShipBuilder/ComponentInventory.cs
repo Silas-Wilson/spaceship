@@ -26,13 +26,26 @@ public class ComponentInventory : MonoBehaviour
     }
     public void LoadInventory()
     {
-        for (int i = 0; i < components.Count; i++)
+        GameObject[] buttons = GameObject.FindGameObjectsWithTag("componentButton");
+        foreach (GameObject button in buttons)
         {
-            ShipComponent component = components[i];
-            InventoryButton button = Instantiate(_button, _inventoryUI.transform);
-            button.SetComponent(component);
-            button.SetPosition(CalculatePosition(i));
+            Destroy(button);
         }
+        for (int i = 0; i < components.Count; i++)
+            {
+                ShipComponent component = components[i];
+                InventoryButton button = Instantiate(_button, _inventoryUI.transform);
+                button.SetComponent(component);
+                button.SetPosition(CalculatePosition(i));
+            }
+    }
+    public void AddToInventory(ShipComponent component)
+    {
+        components.Add(component);
+    }
+    public void RemoveFromInventory(ShipComponent component)
+    {
+        components.Remove(component);
     }
     private Vector2 CalculatePosition(int index)
     {
