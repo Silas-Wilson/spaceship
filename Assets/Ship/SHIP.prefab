@@ -160,6 +160,40 @@ MonoBehaviour:
       m_Action: Action 2
       m_Flags: 0
     m_Flags: 0
+  <Action3>k__BackingField:
+    m_Name: Action 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ecf68564-5683-490e-bdb7-0f7bf16d86dd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 93fb85b3-eb6f-4d67-a737-73582d572ec1
+      m_Path: <Keyboard>/l
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action 3
+      m_Flags: 0
+    m_Flags: 0
+  <Action4>k__BackingField:
+    m_Name: Action 4
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6fd7f645-a55a-4437-8c0c-e85e15d713c5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dc44fb8b-80bd-4f59-a638-f9a3dc3eda2e
+      m_Path: <Keyboard>/semicolon
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action 4
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &2884134119398896839
 MonoBehaviour:
   m_ObjectHideFlags: 0
