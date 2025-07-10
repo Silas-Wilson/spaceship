@@ -11,6 +11,11 @@ public class Health : MonoBehaviour
     {
         _currentHealth = _maxHealth;
     }
+    public void SetMaxHealth(float value)
+    {
+        _maxHealth = value;
+        _currentHealth = _maxHealth;
+    }
     public void TakeDamage(float amount)
     {
         _currentHealth -= amount;
@@ -29,7 +34,7 @@ public class Health : MonoBehaviour
             float defense = 1f;
             if (gameObject.CompareTag("player"))
             {
-                defense = collision.otherCollider.GetComponent<ShipComponent>().GetDefense();
+                defense = collision.otherCollider.GetComponent<ShipComponent>().defense;
             }
             //Probably will change later; calculating damage based on momentum
             TakeDamage(collision.rigidbody.mass * collision.relativeVelocity.magnitude * (1 - (defense / 100)));

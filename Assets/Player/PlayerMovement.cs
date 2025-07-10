@@ -3,16 +3,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float _rotationStrength;
-    [SerializeField] float _maxRotationSpeed;
-    [SerializeField] float _accelerationStrength;
-    [SerializeField] float _inertialFactor;
-    [SerializeField] float _maxSpeed;
-    private Rigidbody2D _rb;
+    float _accelerationStrength;
+    float _rotationStrength;
+    float _maxSpeed;
+    float _maxRotationSpeed;
+    const float INERTIAL_FACTOR = 10f;
+    Rigidbody2D _rb;
+    ShipStats stats;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<ShipStats>();
+    }
+    public void UpdateMovementStats()
+    {
+        _accelerationStrength = stats._acceleration;
+        _rotationStrength = stats._rotationalAcceleration;
+        _maxSpeed = stats._maxSpeed;
+        _maxRotationSpeed = stats._maxRotationSpeed;
     }
     void FixedUpdate()
     {
@@ -26,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Perpindicular Motion
         float currentPerpindicularSpeed = Vector2.Dot(transform.up, _rb.linearVelocity);
-        _rb.AddForce(-1 * transform.up * _inertialFactor * currentPerpindicularSpeed);
+        _rb.AddForce(-1 * transform.up * INERTIAL_FACTOR * currentPerpindicularSpeed);
 
         #endregion
 

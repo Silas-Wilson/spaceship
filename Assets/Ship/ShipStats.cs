@@ -1,16 +1,53 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ShipStats : MonoBehaviour
 {
-    [SerializeField] float _totalMass;
-    [SerializeField] float _totalHP;
-    [SerializeField] Vector2 _centerOfMass;
+    [field: SerializeField] public float _baseHP { get; private set; }
+    [field: SerializeField] public float _baseAcceleration { get; private set; }
+    [field: SerializeField] public float _baseRotationalAcceleration { get; private set; }
+    [field: SerializeField] public float _baseMaxSpeed { get; private set; }
+    [field: SerializeField] public float _baseMaxRotationalSpeed { get; private set; }
+    public float _mass { get; private set; }
+    public float _hp { get; private set; }
+    public float _acceleration { get; private set; }
+    public float _rotationalAcceleration { get; private set; }
+    public float _maxSpeed { get; private set; }
+    public float _maxRotationSpeed { get; private set; }
+    //Implement CoM later
+    Vector2 _centerOfMass;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] Health health;
+    [SerializeField] PlayerMovement movement;
+    void Start()
+    {
+        UpdateShipStats();
+    }
     public void UpdateShipStats()
     {
-        _totalMass = FindTotalMass();
-        rb.mass = _totalMass;
-        rb.inertia = _totalMass;
+        ShipComponent[] allComponents = GetComponentsInChildren<ShipComponent>();
+
+        _mass = FindTotalMass();
+        rb.mass = _mass;
+
+        _hp = _baseHP;
+        _acceleration = _baseAcceleration;
+        _rotationalAcceleration = _baseRotationalAcceleration;
+        _maxSpeed = _baseMaxSpeed;
+        _maxRotationSpeed = _baseMaxRotationalSpeed;
+        foreach (ShipComponent component in allComponents)
+        {
+            Debug.Log(component);
+            _hp += component.bonusHP;
+            _acceleration += component.bonusAcc;
+            _rotationalAcceleration += component.bonusRotAcc;
+            _maxSpeed += component.bonusMax;
+            _maxRotationSpeed += component.bonusRotMax;
+        }
+
+        health.SetMaxHealth(_hp);
+
+        movement.UpdateMovementStats();
     }
     float FindTotalMass()
     {
@@ -19,7 +56,7 @@ public class ShipStats : MonoBehaviour
 
         foreach (ShipComponent component in components)
         {
-            mass += component.GetMass();
+            mass += component.mass;
         }
 
         return mass;

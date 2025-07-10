@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class ShipComponent : MonoBehaviour
 {
-    [SerializeField] float _mass;
-    [SerializeField] float _defense;
-    public float GetMass()
-    {
-        return _mass;
-    }
-    public float GetDefense()
-    {
-        return _defense;
-    }
+    [field: SerializeField] public float mass { get; private set; }
+    [field: SerializeField] public float defense { get; private set; }
+    [field: SerializeField] public float bonusHP { get; private set; }
+    [field: SerializeField] public float bonusAcc { get; private set; }
+    [field: SerializeField] public float bonusRotAcc { get; private set; }
+    [field: SerializeField] public float bonusMax { get; private set; }
+    [field: SerializeField] public float bonusRotMax { get; private set; }
 }

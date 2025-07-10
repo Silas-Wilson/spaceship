@@ -147,6 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcec4cb93136ef40bb53a312ce1fc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mass: 1
-  _defense: 0
-  _draggable: {fileID: 4866450496367256427, guid: c8a65b47cbbe0924b90776fd40030b36, type: 3}
+  <mass>k__BackingField: 1
+  <defense>k__BackingField: 0
+  <bonusHP>k__BackingField: 0
+  <bonusAcc>k__BackingField: 0
+  <bonusRotAcc>k__BackingField: 0
+  <bonusMax>k__BackingField: 0
+  <bonusRotMax>k__BackingField: 0

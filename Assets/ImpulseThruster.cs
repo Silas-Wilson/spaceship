@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class ImpulseThruster : MonoBehaviour
 {
     [SerializeField] float _thrustStrength;
+    [SerializeField] float _forceDuration;
     Rigidbody2D shipRb;
     void Awake()
     {
@@ -19,6 +21,19 @@ public class ImpulseThruster : MonoBehaviour
 
     void ActivateThrust()
     {
-        shipRb.AddForce(_thrustStrength * transform.right, ForceMode2D.Impulse);
+        StartCoroutine(ForceApplier());
     }
+
+    IEnumerator ForceApplier()
+    {
+        float timeLeft = _forceDuration;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            shipRb.AddForce(_thrustStrength * transform.right);
+            yield return null;
+        }
+    }
+    
 }
