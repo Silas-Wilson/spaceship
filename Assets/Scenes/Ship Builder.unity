@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ccfd2fb283375489960c95ddf4c2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipPrefab: {fileID: 5529594991568832997, guid: 4def9a38ca6bb3e48bb3e203138bb0f8, type: 3}
+  ShipPrefab: {fileID: 8536642299784958613, guid: 4def9a38ca6bb3e48bb3e203138bb0f8, type: 3}
   CorePrefab: {fileID: 6825380101741242115, guid: b1d2346a30745c14e9efa95bc3ff1920, type: 3}
   GunPrefabFOR_DEBUG: {fileID: 5626225548220389106, guid: 9adcc5cb0f0847040ad1d6258ccf1e7c, type: 3}
 --- !u!1 &1416757314

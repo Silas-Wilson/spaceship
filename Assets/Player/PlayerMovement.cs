@@ -9,19 +9,16 @@ public class PlayerMovement : MonoBehaviour
     float _maxRotationSpeed;
     const float INERTIAL_FACTOR = 10f;
     Rigidbody2D _rb;
-    ShipStats stats;
-
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        stats = GetComponent<ShipStats>();
     }
-    public void UpdateMovementStats()
+    public void UpdateMovementStats(float acc, float rotAcc, float max, float rotMax)
     {
-        _accelerationStrength = stats._acceleration;
-        _rotationStrength = stats._rotationalAcceleration;
-        _maxSpeed = stats._maxSpeed;
-        _maxRotationSpeed = stats._maxRotationSpeed;
+        _accelerationStrength = acc;
+        _rotationStrength = rotAcc;
+        _maxSpeed = max;
+        _maxRotationSpeed = rotMax;
     }
     void FixedUpdate()
     {

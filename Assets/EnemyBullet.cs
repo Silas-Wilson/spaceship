@@ -1,9 +1,12 @@
 using System.Collections;
+using System.Data.Common;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    [SerializeField] LayerMask _ignoredLayers;
     [SerializeField] float _duration;
+    [SerializeField] float _damage;
     [SerializeField] Rigidbody2D rb;
     void Start()
     {
@@ -26,8 +29,23 @@ public class EnemyBullet : MonoBehaviour
 
         OnDestroy();
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (((1 << collision.gameObject.layer) & _ignoredLayers) != 0)
+        {
+            return;
+        }
+        if (collision.CompareTag("Player"))
+        {
+            Health playerHealth = collision.GetComponentInParent<Health>();
+            float playerDefense = collision.GetComponent<ShipComponent>().Stats.Defense;
+
+            playerHealth.TakeDamage(_damage * (1 - (playerDefense / 100)));
+        }
+        else if (collision.TryGetComponent(out Health colliderHealth))
+        {
+            colliderHealth.TakeDamage(_damage);
+        }
         Destroy(gameObject);
     }
 

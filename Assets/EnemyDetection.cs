@@ -7,7 +7,7 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] CircleCollider2D col;
     private GameObject player;
     public bool IsPlayerVisible { get; private set; }
-    private const string _PLAYER_TAG = "player";
+    private const string _PLAYER_TAG = "Player";
 
     void Awake()
     {

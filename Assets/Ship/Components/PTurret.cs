@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 public class PTurret : MonoBehaviour
 {
-    [SerializeField] float _cooldownTime;
-    [SerializeField] GameObject projectile;
+    [SerializeField] ShipComponent _component;
+    [SerializeField] PlayerProjectile projectile;
     [SerializeField] Vector3 _projectileSpawnPos;
     bool canFire;
     bool isFiring;
@@ -32,7 +32,8 @@ public class PTurret : MonoBehaviour
     void FireProjectile()
     {
         Vector3 spawnPos = transform.position + transform.TransformDirection(_projectileSpawnPos);
-        GameObject thisProjectile = Instantiate(projectile, spawnPos, transform.rotation);
+        PlayerProjectile thisProjectile = Instantiate(projectile, spawnPos, transform.rotation);
+        thisProjectile.Initialize(_component);
         StartCoroutine(cooldown());
     }
     void StartFiring()
@@ -47,7 +48,7 @@ public class PTurret : MonoBehaviour
     IEnumerator cooldown()
     {
         canFire = false;
-        float timeLeft = _cooldownTime;
+        float timeLeft = _component.Stats.FireRate;
 
         while (timeLeft > 0)
         {
@@ -56,7 +57,6 @@ public class PTurret : MonoBehaviour
         }
         canFire = true;
     }
-
 
     void OnDrawGizmos()
     {

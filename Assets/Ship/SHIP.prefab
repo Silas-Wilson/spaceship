@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 1177560249604663956}
   - component: {fileID: 2884134119398896839}
   - component: {fileID: 5469359077498148920}
-  - component: {fileID: 5529594991568832997}
   - component: {fileID: -5819975604515542422}
+  - component: {fileID: 8536642299784958613}
   m_Layer: 3
   m_Name: SHIP
-  m_TagString: player
+  m_TagString: Player
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,26 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraFollowSpeed: 0.1
---- !u!114 &5529594991568832997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5215379536873563315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810de04e78b7ee141a6c3ce05d15215b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <_baseHP>k__BackingField: 50
-  <_baseAcceleration>k__BackingField: 3
-  <_baseRotationalAcceleration>k__BackingField: 0.1
-  <_baseMaxSpeed>k__BackingField: 7
-  <_baseMaxRotationalSpeed>k__BackingField: 150
-  rb: {fileID: 896192707578806918}
-  health: {fileID: -5819975604515542422}
-  movement: {fileID: 2884134119398896839}
 --- !u!114 &-5819975604515542422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,11 +231,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb1882b716a2884e8f2cbd7930d74dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageLayers:
-    serializedVersion: 2
-    m_Bits: 768
   _maxHealth: 100
   _currentHealth: 0
   _onEntityDead:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8536642299784958613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215379536873563315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810de04e78b7ee141a6c3ce05d15215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseHP: 50
+  _baseAcceleration: 3
+  _baseRotationalAcceleration: 0.1
+  _baseMaxSpeed: 7
+  _baseMaxRotationalSpeed: 150
+  rb: {fileID: 896192707578806918}
+  health: {fileID: -5819975604515542422}
+  movement: {fileID: 2884134119398896839}

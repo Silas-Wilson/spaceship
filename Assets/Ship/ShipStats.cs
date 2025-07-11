@@ -3,62 +3,46 @@ using UnityEngine;
 
 public class ShipStats : MonoBehaviour
 {
-    [field: SerializeField] public float _baseHP { get; private set; }
-    [field: SerializeField] public float _baseAcceleration { get; private set; }
-    [field: SerializeField] public float _baseRotationalAcceleration { get; private set; }
-    [field: SerializeField] public float _baseMaxSpeed { get; private set; }
-    [field: SerializeField] public float _baseMaxRotationalSpeed { get; private set; }
-    public float _mass { get; private set; }
-    public float _hp { get; private set; }
-    public float _acceleration { get; private set; }
-    public float _rotationalAcceleration { get; private set; }
-    public float _maxSpeed { get; private set; }
-    public float _maxRotationSpeed { get; private set; }
+    [Header("Base Stats")]
+    [SerializeField] float _baseHP;
+    [SerializeField] float _baseAcceleration;
+    [SerializeField] float _baseRotationalAcceleration;
+    [SerializeField] float _baseMaxSpeed;
+    [SerializeField] float _baseMaxRotationalSpeed;
+    float _mass;
+    float _hp;
+    float _acceleration;
+    float _rotationalAcceleration;
+    float _maxSpeed;
+    float _maxRotationalSpeed;
     //Implement CoM later
     Vector2 _centerOfMass;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Health health;
     [SerializeField] PlayerMovement movement;
-    void Start()
-    {
-        UpdateShipStats();
-    }
     public void UpdateShipStats()
     {
-        ShipComponent[] allComponents = GetComponentsInChildren<ShipComponent>();
+        ShipComponent[] components = ShipBuildData.Instance.Grid.GetAllComponents();
 
-        _mass = FindTotalMass();
-        rb.mass = _mass;
+        _mass = 0f;
 
         _hp = _baseHP;
         _acceleration = _baseAcceleration;
         _rotationalAcceleration = _baseRotationalAcceleration;
         _maxSpeed = _baseMaxSpeed;
-        _maxRotationSpeed = _baseMaxRotationalSpeed;
-        foreach (ShipComponent component in allComponents)
-        {
-            Debug.Log(component);
-            _hp += component.bonusHP;
-            _acceleration += component.bonusAcc;
-            _rotationalAcceleration += component.bonusRotAcc;
-            _maxSpeed += component.bonusMax;
-            _maxRotationSpeed += component.bonusRotMax;
-        }
-
-        health.SetMaxHealth(_hp);
-
-        movement.UpdateMovementStats();
-    }
-    float FindTotalMass()
-    {
-        float mass = 0;
-        ShipComponent[] components = ShipBuildData.Instance.Grid.GetAllComponents();
-
+        _maxRotationalSpeed = _baseMaxRotationalSpeed;
         foreach (ShipComponent component in components)
         {
-            mass += component.mass;
-        }
+            _mass += component.Stats.Mass;
 
-        return mass;
+            _hp += component.Stats.BonusHP;
+            _acceleration += component.Stats.BonusAcceleration;
+            _rotationalAcceleration += component.Stats.BonusRotationalAcceleration;
+            _maxSpeed += component.Stats.BonusMaxSpeed;
+            _maxRotationalSpeed += component.Stats.BonusMaxRotationalSpeed;
+        }
+        rb.mass = _mass;
+        health.SetMaxHealth(_hp);
+        movement.UpdateMovementStats(_acceleration, _rotationalAcceleration, _maxSpeed, _maxRotationalSpeed);
     }
 }

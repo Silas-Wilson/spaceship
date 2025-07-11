@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 public class ShipBuildData : MonoBehaviour
 {
     public static ShipBuildData Instance;
@@ -10,6 +9,7 @@ public class ShipBuildData : MonoBehaviour
     [SerializeField] ShipStats ShipPrefab;
     [SerializeField] ShipComponent CorePrefab;
     [SerializeField] ShipComponent GunPrefabFOR_DEBUG;
+
     void Awake()
     {
         if (Instance == null)
@@ -37,6 +37,7 @@ public class ShipBuildData : MonoBehaviour
         }
         _activeShip.UpdateShipStats();
         BuildShipComponents();
+        _activeShip.UpdateShipStats();
         return _activeShip;
     }
     private void BuildShipComponents()

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ImpulseThruster : MonoBehaviour
 {
-    [SerializeField] float _thrustStrength;
-    [SerializeField] float _forceDuration;
+    [SerializeField] ShipComponent _component;
+    const float FORCE_DURATION = 0.2f;
     Rigidbody2D shipRb;
     void Awake()
     {
@@ -26,12 +26,12 @@ public class ImpulseThruster : MonoBehaviour
 
     IEnumerator ForceApplier()
     {
-        float timeLeft = _forceDuration;
+        float timeLeft = FORCE_DURATION;
 
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            shipRb.AddForce(_thrustStrength * transform.right);
+            shipRb.AddForce(_component.Stats.ThrustStrength * transform.right);
             yield return null;
         }
     }

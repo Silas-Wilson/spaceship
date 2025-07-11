@@ -3,25 +3,35 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    [SerializeField] float _projectileSpeed;
-    [SerializeField] float _DurationSecs;
+    [SerializeField] LayerMask _ignoredLayers;
+    ShipComponent source;
     Rigidbody2D rb;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    void Start()
+    public void Initialize(ShipComponent s)
     {
-        rb.linearVelocity = transform.right * _projectileSpeed;
+        source = s;
+        rb.linearVelocity = transform.right * source.Stats.ProjectileSpeed;
         StartCoroutine(LifetimeTimer());
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (((1 << collision.gameObject.layer) & _ignoredLayers) != 0)
+        {
+            return;
+        }
+        if (collision.TryGetComponent(out Health colliderHealth))
+        {
+            Debug.Log($"{collision.name} has taken {source.Stats.Damage} damage!");
+            colliderHealth.TakeDamage(source.Stats.Damage);
+        }
         Destroy(gameObject);
     }
     IEnumerator LifetimeTimer()
     {
-        float timeLeft = _DurationSecs;
+        float timeLeft = source.Stats.ProjectileDuration;
 
         while (timeLeft > 0)
         {

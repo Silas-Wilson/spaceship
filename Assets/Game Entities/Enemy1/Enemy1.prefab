@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1733261830943519939}
   - component: {fileID: 4384856208441093880}
   - component: {fileID: 2410615689460454771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Detection Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,9 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb1882b716a2884e8f2cbd7930d74dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageLayers:
-    serializedVersion: 2
-    m_Bits: 72
   _maxHealth: 30
   _currentHealth: 0
   _onEntityDead:

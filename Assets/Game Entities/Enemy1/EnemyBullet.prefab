@@ -102,7 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de7fc40f729633469e060f77b299f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 1280
   _duration: 3
+  _damage: 15
   rb: {fileID: 8227511577437748708}
 --- !u!50 &8227511577437748708
 Rigidbody2D:
@@ -161,7 +165,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8241912463272684437}
   m_Layer: 3
   m_Name: Impulse Thruster Component
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,13 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcec4cb93136ef40bb53a312ce1fc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <mass>k__BackingField: 0.2
-  <defense>k__BackingField: 10
-  <bonusHP>k__BackingField: 0
-  <bonusAcc>k__BackingField: 0
-  <bonusRotAcc>k__BackingField: 0
-  <bonusMax>k__BackingField: 0
-  <bonusRotMax>k__BackingField: 0
+  <Stats>k__BackingField: {fileID: 11400000, guid: 28a1b054680ba3d45a440042ad1f04e3, type: 2}
 --- !u!114 &8241912463272684437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,5 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9d510ab12dffe44a7a90d95757e840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrustStrength: 10
-  _forceDuration: 0.2
+  _component: {fileID: 6588970363872550164}
