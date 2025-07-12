@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - componentButton
+  - enemy
   layers:
   - Default
   - TransparentFX
