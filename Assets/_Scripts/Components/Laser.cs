@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField] GameObject beam;
-    [SerializeField] float _laserLength;
-    [SerializeField] float _laserWidth;
-    const int UNITS_PER_LASERSCALE = 8;
+    [SerializeField] LaserBeam beam;
+    bool laserActivated;
+    void Start()
+    {
+        laserActivated = false;
+    }
     void OnEnable()
     {
         PlayerInput.Input.OnAct3Pressed += ActivateLaser;
@@ -18,10 +20,21 @@ public class Laser : MonoBehaviour
     }
     void ActivateLaser()
     {
-        beam.transform.localScale = new Vector2(UNITS_PER_LASERSCALE * _laserLength, _laserWidth);
+        laserActivated = true;
     }
     void DeactivateLaser()
     {
-        beam.transform.localScale = Vector2.zero;
+        laserActivated = false;
+    }
+    void Update()
+    {
+        if (laserActivated)
+        {
+            beam.transform.localScale = new Vector2(beam.GetLaserLength(), beam.GetLaserWidth());
+        }
+        else
+        {
+            beam.transform.localScale = Vector2.zero;
+        }
     }
 }
