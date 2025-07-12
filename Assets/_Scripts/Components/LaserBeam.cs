@@ -50,6 +50,9 @@ public class LaserBeam : MonoBehaviour
     }
     void Update()
     {
-        collisionHealth?.TakeDamage(component.Stats.Damage * Time.deltaTime);
+        if (collisionHealth != null)
+        {
+            collisionHealth.TakeDamage(component.Stats.Damage * Time.deltaTime);
+        }
     }
 }
