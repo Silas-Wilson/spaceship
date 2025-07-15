@@ -31,8 +31,19 @@ public class ShipStats : MonoBehaviour
         _rotationalAcceleration = _baseRotationalAcceleration;
         _maxSpeed = _baseMaxSpeed;
         _maxRotationalSpeed = _baseMaxRotationalSpeed;
+
         foreach (ShipComponent component in components)
         {
+            BuffComponent buff = component.gameObject.GetComponent<BuffComponent>();
+            if (buff == null)
+            {
+                return;
+            }
+            buff.ApplyBuffs();
+        }
+
+        foreach (ShipComponent component in components)
+            {
             _mass += component.Stats.Mass;
 
             _hp += component.Stats.BonusHP;

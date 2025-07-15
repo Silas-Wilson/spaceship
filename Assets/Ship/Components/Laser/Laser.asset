@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db82f1a22858cc848bfcaf5d56bb0424, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
-  <Mass>k__BackingField: 0.5
+  <Mass>k__BackingField: 0
   <Defense>k__BackingField: 20
   <Damage>k__BackingField: 50
   <FireRate>k__BackingField: 0

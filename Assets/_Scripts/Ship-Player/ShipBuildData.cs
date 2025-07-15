@@ -35,7 +35,6 @@ public class ShipBuildData : MonoBehaviour
         {
             _activeShip = Instantiate(ShipPrefab, location, Quaternion.identity);
         }
-        _activeShip.UpdateShipStats();
         BuildShipComponents();
         _activeShip.UpdateShipStats();
         return _activeShip;
