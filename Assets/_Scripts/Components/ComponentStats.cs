@@ -33,7 +33,7 @@ public class ComponentStats : ScriptableObject
     [HideInInspector] public float BonusMaxSpeed;
     [HideInInspector] public float BonusMaxRotationalSpeed;
 
-    void Awake()
+    void OnEnable()
     {
         Mass = _dMass;
         Defense = _dDefense;

@@ -73,7 +73,7 @@ public class AutomaticTurret : MonoBehaviour
     IEnumerator BulletCooldown()
     {
         canFire = false;
-        float timeLeft = component.Stats.FireRate;
+        float timeLeft = 1 / component.Stats.FireRate;
 
         while (timeLeft > 0)
         {

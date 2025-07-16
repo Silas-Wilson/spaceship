@@ -12,15 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db82f1a22858cc848bfcaf5d56bb0424, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
-  <Mass>k__BackingField: 1.5
-  <Defense>k__BackingField: 90
-  <Damage>k__BackingField: 0
-  <FireRate>k__BackingField: 0
-  <ProjectileSpeed>k__BackingField: 0
-  <ProjectileDuration>k__BackingField: 0
-  <ThrustStrength>k__BackingField: 0
-  <BonusHP>k__BackingField: 10
-  <BonusAcceleration>k__BackingField: 0
-  <BonusRotationalAcceleration>k__BackingField: 0
-  <BonusMaxSpeed>k__BackingField: 0
-  <BonusMaxRotationalSpeed>k__BackingField: 0
+  _dMass: 1.5
+  _dDefense: 90
+  _dDamage: 0
+  _dFireRate: 0
+  _dProjectileSpeed: 0
+  _dProjectileDuration: 0
+  _dThrustStrength: 0
+  _dBonusHP: 10
+  _dBonusAcceleration: 0
+  _dBonusRotationalAcceleration: 0
+  _dBonusMaxSpeed: 0
+  _dBonusMaxRotationalSpeed: 0
+  Mass: 0
+  Defense: 0
+  Damage: 0
+  FireRate: 0
+  ProjectileSpeed: 0
+  ProjectileDuration: 0
+  ThrustStrength: 0
+  BonusHP: 0
+  BonusAcceleration: 0
+  BonusRotationalAcceleration: 0
+  BonusMaxSpeed: 0
+  BonusMaxRotationalSpeed: 0

@@ -37,13 +37,13 @@ public class ShipStats : MonoBehaviour
             BuffComponent buff = component.gameObject.GetComponent<BuffComponent>();
             if (buff == null)
             {
-                return;
+                continue;
             }
             buff.ApplyBuffs();
         }
 
         foreach (ShipComponent component in components)
-            {
+        {
             _mass += component.Stats.Mass;
 
             _hp += component.Stats.BonusHP;

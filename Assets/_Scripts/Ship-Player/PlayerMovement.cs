@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         #region Acceleration
-
         float targetSpeed = PlayerInput.Input.IsAccelerating ? _maxSpeed : 0f;
 
         //Forward Motion

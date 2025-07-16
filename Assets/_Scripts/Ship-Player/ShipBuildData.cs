@@ -4,7 +4,6 @@ public class ShipBuildData : MonoBehaviour
 {
     public static ShipBuildData Instance;
     public ComponentGrid Grid { get; private set; }
-    private ComponentGrid _defaultGrid;
     private ShipStats _activeShip;
     [SerializeField] ShipStats ShipPrefab;
     [SerializeField] ShipComponent CorePrefab;
@@ -97,6 +96,28 @@ public class ComponentGrid
             components[i] = _grid[i].component;
         }
         return components;
+    }
+    public ShipComponent GetComponentAt(Vector2Int location)
+    {
+        foreach (ShipComponentData data in _grid)
+        {
+            if (data.position == location)
+            {
+                return data.component;
+            }
+        }
+        return null;
+    }
+    public Vector2Int GetLocationOf(ShipComponent comp)
+    {
+        foreach (ShipComponentData data in _grid)
+        {
+            if (data.component == comp)
+            {
+                return data.position;
+            }
+        }
+        return Vector2Int.zero;
     }
     private bool IsInValidLocation(Vector2Int location)
     {

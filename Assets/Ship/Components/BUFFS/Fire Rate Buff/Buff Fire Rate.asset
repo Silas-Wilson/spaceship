@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db82f1a22858cc848bfcaf5d56bb0424, type: 3}
-  m_Name: Laser
+  m_Name: Buff Fire Rate
   m_EditorClassIdentifier: 
-  _dMass: 0.25
-  _dDefense: 20
-  _dDamage: 10
-  _dFireRate: 0
+  _dMass: 0
+  _dDefense: 0
+  _dDamage: 0
+  _dFireRate: 10
   _dProjectileSpeed: 0
   _dProjectileDuration: 0
   _dThrustStrength: 0
