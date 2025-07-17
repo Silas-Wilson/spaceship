@@ -48,7 +48,7 @@ public class PTurret : MonoBehaviour
     IEnumerator cooldown()
     {
         canFire = false;
-        float timeLeft = 1 / _component.Stats.FireRate;
+        float timeLeft = 1 / _component.FireRate;
 
         while (timeLeft > 0)
         {

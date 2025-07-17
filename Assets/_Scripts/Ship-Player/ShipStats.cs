@@ -44,13 +44,13 @@ public class ShipStats : MonoBehaviour
 
         foreach (ShipComponent component in components)
         {
-            _mass += component.Stats.Mass;
+            _mass += component.Mass;
 
-            _hp += component.Stats.BonusHP;
-            _acceleration += component.Stats.BonusAcceleration;
-            _rotationalAcceleration += component.Stats.BonusRotationalAcceleration;
-            _maxSpeed += component.Stats.BonusMaxSpeed;
-            _maxRotationalSpeed += component.Stats.BonusMaxRotationalSpeed;
+            _hp += component.BonusHP;
+            _acceleration += component.BonusAcceleration;
+            _rotationalAcceleration += component.BonusRotationalAcceleration;
+            _maxSpeed += component.BonusMaxSpeed;
+            _maxRotationalSpeed += component.BonusMaxRotationalSpeed;
         }
         rb.mass = _mass;
         health.SetMaxHealth(_hp);

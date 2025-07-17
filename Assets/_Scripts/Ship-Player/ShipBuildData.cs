@@ -50,7 +50,12 @@ public class ShipBuildData : MonoBehaviour
             ShipComponent componentAdded = Instantiate(compData.component, _activeShip.transform);
             componentAdded.transform.rotation = compData.rotation;
             componentAdded.transform.localPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
+            compData.component.Init();
         }
+    }
+    public void GetComponentAt(Vector2 location)
+    {
+        
     }
 }
 
@@ -112,7 +117,7 @@ public class ComponentGrid
     {
         foreach (ShipComponentData data in _grid)
         {
-            if (data.component == comp)
+            if (data.component.GetInstanceID() == comp.GetInstanceID())
             {
                 return data.position;
             }

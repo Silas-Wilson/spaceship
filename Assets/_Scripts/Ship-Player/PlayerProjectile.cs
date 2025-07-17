@@ -13,7 +13,7 @@ public class PlayerProjectile : MonoBehaviour
     public void Initialize(ShipComponent s)
     {
         source = s;
-        rb.linearVelocity = transform.right * source.Stats.ProjectileSpeed;
+        rb.linearVelocity = transform.right * source.ProjectileSpeed;
         StartCoroutine(LifetimeTimer());
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -24,14 +24,14 @@ public class PlayerProjectile : MonoBehaviour
         }
         if (collision.TryGetComponent(out Health colliderHealth))
         {
-            Debug.Log($"{collision.name} has taken {source.Stats.Damage} damage!");
-            colliderHealth.TakeDamage(source.Stats.Damage);
+            Debug.Log($"{collision.name} has taken {source.Damage} damage!");
+            colliderHealth.TakeDamage(source.Damage);
         }
         Destroy(gameObject);
     }
     IEnumerator LifetimeTimer()
     {
-        float timeLeft = source.Stats.ProjectileDuration;
+        float timeLeft = source.ProjectileDuration;
 
         while (timeLeft > 0)
         {

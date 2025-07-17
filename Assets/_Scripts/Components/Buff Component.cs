@@ -17,19 +17,18 @@ public class BuffComponent : MonoBehaviour
 
         foreach (ShipComponent component in componentsToBuff)
         {
-            Debug.Log($"Buffing {component.name}");
-            component.Stats.Mass += _buffedStats.Mass;
-            component.Stats.Defense += _buffedStats.Defense;
-            component.Stats.Damage += _buffedStats.Damage;
-            component.Stats.FireRate += _buffedStats.FireRate;
-            component.Stats.ProjectileSpeed += _buffedStats.ProjectileSpeed;
-            component.Stats.ProjectileDuration += _buffedStats.ProjectileDuration;
-            component.Stats.ThrustStrength += _buffedStats.ThrustStrength;
-            component.Stats.BonusHP += _buffedStats.BonusHP;
-            component.Stats.BonusAcceleration += _buffedStats.BonusAcceleration;
-            component.Stats.BonusRotationalAcceleration += _buffedStats.BonusRotationalAcceleration;
-            component.Stats.BonusMaxSpeed += _buffedStats.BonusMaxSpeed;
-            component.Stats.BonusMaxRotationalSpeed += _buffedStats.BonusMaxRotationalSpeed;
+            component.Mass += _buffedStats.Mass;
+            component.Defense += _buffedStats.Defense;
+            component.Damage += _buffedStats.Damage;
+            component.FireRate += _buffedStats.FireRate;
+            component.ProjectileSpeed += _buffedStats.ProjectileSpeed;
+            component.ProjectileDuration += _buffedStats.ProjectileDuration;
+            component.ThrustStrength += _buffedStats.ThrustStrength;
+            component.BonusHP += _buffedStats.BonusHP;
+            component.BonusAcceleration += _buffedStats.BonusAcceleration;
+            component.BonusRotationalAcceleration += _buffedStats.BonusRotationalAcceleration;
+            component.BonusMaxSpeed += _buffedStats.BonusMaxSpeed;
+            component.BonusMaxRotationalSpeed += _buffedStats.BonusMaxRotationalSpeed;
         }
     }
     List<ShipComponent> GetBuffedComponents()
@@ -75,6 +74,7 @@ public class BuffComponent : MonoBehaviour
     ShipComponent FindComponent(Vector2Int position)
     {
         Vector2Int thisPosition = ShipBuildData.Instance.Grid.GetLocationOf(_component);
+        Debug.Log(thisPosition);
         if (thisPosition == Vector2Int.zero)
         {
             return null;

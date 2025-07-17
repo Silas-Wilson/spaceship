@@ -147,4 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcec4cb93136ef40bb53a312ce1fc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Stats>k__BackingField: {fileID: 11400000, guid: 8a0ec41b109ba2843b33466286c69525, type: 2}
+  stats: {fileID: 11400000, guid: 8a0ec41b109ba2843b33466286c69525, type: 2}
+  Mass: 0
+  Defense: 0
+  Damage: 0
+  FireRate: 0
+  ProjectileSpeed: 0
+  ProjectileDuration: 0
+  ThrustStrength: 0
+  BonusHP: 0
+  BonusAcceleration: 0
+  BonusRotationalAcceleration: 0
+  BonusMaxSpeed: 0
+  BonusMaxRotationalSpeed: 0

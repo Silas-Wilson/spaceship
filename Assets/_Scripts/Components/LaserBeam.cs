@@ -52,7 +52,7 @@ public class LaserBeam : MonoBehaviour
     {
         if (collisionHealth != null)
         {
-            collisionHealth.TakeDamage(component.Stats.Damage * Time.deltaTime);
+            collisionHealth.TakeDamage(component.Damage * Time.deltaTime);
         }
     }
 }

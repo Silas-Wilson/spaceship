@@ -50,7 +50,7 @@ public class AutomaticTurret : MonoBehaviour
 
         float cross = enemyDirection.x * enemyPerpendicularVelocity.y - enemyDirection.y * enemyPerpendicularVelocity.x;
 
-        float ratio = enemyPerpendicularSpeed / component.Stats.ProjectileSpeed;
+        float ratio = enemyPerpendicularSpeed / component.ProjectileSpeed;
         ratio = Mathf.Clamp(ratio, -1f, 1f);
 
         float fireAngle = Mathf.Asin(ratio);
@@ -73,7 +73,7 @@ public class AutomaticTurret : MonoBehaviour
     IEnumerator BulletCooldown()
     {
         canFire = false;
-        float timeLeft = 1 / component.Stats.FireRate;
+        float timeLeft = 1 / component.FireRate;
 
         while (timeLeft > 0)
         {

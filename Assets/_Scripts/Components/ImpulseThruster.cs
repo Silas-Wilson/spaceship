@@ -31,7 +31,7 @@ public class ImpulseThruster : MonoBehaviour
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-            shipRb.AddForce(_component.Stats.ThrustStrength * transform.right);
+            shipRb.AddForce(_component.ThrustStrength * transform.right);
             yield return null;
         }
     }

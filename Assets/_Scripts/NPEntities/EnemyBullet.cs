@@ -38,7 +38,7 @@ public class EnemyBullet : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Health playerHealth = collision.GetComponentInParent<Health>();
-            float playerDefense = collision.GetComponent<ShipComponent>().Stats.Defense;
+            float playerDefense = collision.GetComponent<ShipComponent>().Defense;
 
             playerHealth.TakeDamage(_damage * (1 - (playerDefense / 100)));
         }
