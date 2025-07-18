@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2986944846258790242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 8787b04129cff544fb9a3ef73055f41c, type: 2}
-  Mass: 0
-  Defense: 0
-  Damage: 0
+  Mass: 0.5
+  Defense: 30
+  Damage: 15
   FireRate: 0
   ProjectileSpeed: 0
   ProjectileDuration: 0

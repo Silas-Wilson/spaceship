@@ -30,6 +30,7 @@ public class ShipBuildData : MonoBehaviour
     }
     public ShipStats BuildShip(Vector2 location)
     {
+        Debug.Log("\n");
         if (_activeShip == null)
         {
             _activeShip = Instantiate(ShipPrefab, location, Quaternion.identity);
@@ -48,15 +49,10 @@ public class ShipBuildData : MonoBehaviour
         foreach (var compData in Grid.GetAllValues())
         {
             ShipComponent componentAdded = Instantiate(compData.component, _activeShip.transform);
-            componentAdded.transform.rotation = compData.rotation;
-            componentAdded.transform.localPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
-            Debug.Log($"Set {componentAdded.name}'s Position to {componentAdded.transform.position}");
-            compData.component.Init();
+            Quaternion spawnRotation = compData.rotation;
+            Vector3Int spawnPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
+            componentAdded.Init(spawnPosition, spawnRotation);
         }
-    }
-    public void GetComponentAt(Vector2 location)
-    {
-        
     }
 }
 

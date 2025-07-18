@@ -17,6 +17,7 @@ public class BuffComponent : MonoBehaviour
 
         foreach (ShipComponent component in componentsToBuff)
         {
+            Debug.Log($"Buffing {component.GetInstanceID()}");
             component.Mass += _buffedStats.Mass;
             component.Defense += _buffedStats.Defense;
             component.Damage += _buffedStats.Damage;
@@ -76,9 +77,9 @@ public class BuffComponent : MonoBehaviour
         Vector3 rotatedPosition = new Vector3(Mathf.Cos(angle + Mathf.Acos(position.x)), Mathf.Sin(angle + Mathf.Asin(position.y)));
         Vector2 checkLocation = transform.position + rotatedPosition;
         Collider2D hit = Physics2D.OverlapCircle(checkLocation, overlapCircleSize);
-        Debug.Log($"{_component.name}'s position is {_component.transform.localPosition}");
         if (hit != null)
         {
+            Debug.Log("Collided with: " + hit.GetInstanceID());
             ShipComponent componentToBuff = hit.GetComponent<ShipComponent>();
             if (componentToBuff != null && componentToBuff.CompareTag("Player"))
             {

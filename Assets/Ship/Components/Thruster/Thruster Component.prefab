@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8852271776832638374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.29668, y: 44.9659, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,15 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 801d9759ef79bae4798f93562ca3a78d, type: 2}
-  Mass: 0
-  Defense: 0
+  Mass: 0.1
+  Defense: 20
   Damage: 0
   FireRate: 0
   ProjectileSpeed: 0
   ProjectileDuration: 0
   ThrustStrength: 0
   BonusHP: 0
-  BonusAcceleration: 0
-  BonusRotationalAcceleration: 0
-  BonusMaxSpeed: 0
-  BonusMaxRotationalSpeed: 0
+  BonusAcceleration: 7
+  BonusRotationalAcceleration: 0.1
+  BonusMaxSpeed: 3
+  BonusMaxRotationalSpeed: 25

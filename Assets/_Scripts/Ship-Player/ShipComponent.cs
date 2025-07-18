@@ -16,8 +16,11 @@ public class ShipComponent : MonoBehaviour
     [HideInInspector] public float BonusMaxSpeed;
     [HideInInspector] public float BonusMaxRotationalSpeed;
 
-    public void Init()
+    public void Init(Vector3Int spawnLocation, Quaternion spawnRotation)
     {
+        transform.localPosition = spawnLocation;
+        transform.rotation = spawnRotation;
+
         Mass = stats.Mass;
         Defense = stats.Defense;
         Damage = stats.Damage;
@@ -30,5 +33,7 @@ public class ShipComponent : MonoBehaviour
         BonusRotationalAcceleration = stats.BonusRotationalAcceleration;
         BonusMaxSpeed = stats.BonusMaxSpeed;
         BonusMaxRotationalSpeed = stats.BonusMaxRotationalSpeed;
+
+        //Debug.Log($"{gameObject.name} has been initialized at {transform.position}");
     }
 }
