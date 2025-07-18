@@ -10,7 +10,7 @@ public class BuffComponent : MonoBehaviour
     [SerializeField] bool _buffDown;
     [SerializeField] bool _buffRight;
     [SerializeField] bool _buffLeft;
-    Vector2 overlapBoxSize = new(0.1f, 0.1f);
+    const float overlapCircleSize = 0.1f;
     public void ApplyBuffs()
     {
         List<ShipComponent> componentsToBuff = GetBuffedComponents();
@@ -70,19 +70,20 @@ public class BuffComponent : MonoBehaviour
 
         return components;
     }
-
     ShipComponent FindComponent(Vector2Int position)
     {
-        Vector2Int thisPosition = ShipBuildData.Instance.Grid.GetLocationOf(_component);
-        Debug.Log(thisPosition);
-        if (thisPosition == Vector2Int.zero)
+        float angle = transform.eulerAngles.z;
+        Vector3 rotatedPosition = new Vector3(Mathf.Cos(angle + Mathf.Acos(position.x)), Mathf.Sin(angle + Mathf.Asin(position.y)));
+        Vector2 checkLocation = transform.position + rotatedPosition;
+        Collider2D hit = Physics2D.OverlapCircle(checkLocation, overlapCircleSize);
+        Debug.Log($"{_component.name}'s position is {_component.transform.localPosition}");
+        if (hit != null)
         {
-            return null;
-        }
-        ShipComponent c = ShipBuildData.Instance.Grid.GetComponentAt(thisPosition + position);
-        if (c != null)
-        {
-            return c;
+            ShipComponent componentToBuff = hit.GetComponent<ShipComponent>();
+            if (componentToBuff != null && componentToBuff.CompareTag("Player"))
+            {
+                return componentToBuff;
+            }
         }
         return null;
     }
@@ -90,8 +91,8 @@ public class BuffComponent : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position, overlapBoxSize);
-        Gizmos.DrawCube((Vector2)transform.position + Vector2.up, overlapBoxSize);
-        Gizmos.DrawCube((Vector2)transform.position + Vector2.down, overlapBoxSize);
+        Gizmos.DrawSphere(transform.position, overlapCircleSize);
+        Gizmos.DrawSphere((Vector2)transform.position + Vector2.up, overlapCircleSize);
+        Gizmos.DrawSphere((Vector2)transform.position + Vector2.down, overlapCircleSize);
     }
 }

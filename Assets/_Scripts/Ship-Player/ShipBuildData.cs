@@ -50,6 +50,7 @@ public class ShipBuildData : MonoBehaviour
             ShipComponent componentAdded = Instantiate(compData.component, _activeShip.transform);
             componentAdded.transform.rotation = compData.rotation;
             componentAdded.transform.localPosition = new Vector3Int(compData.position.x, compData.position.y, 0);
+            Debug.Log($"Set {componentAdded.name}'s Position to {componentAdded.transform.position}");
             compData.component.Init();
         }
     }
